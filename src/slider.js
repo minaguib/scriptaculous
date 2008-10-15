@@ -79,7 +79,12 @@ Control.Slider = Class.create({
       h.makePositioned().observe("mousedown", slider.eventMouseDown);
     });
 
+	 if (options.ignoreTrackClick) {
+		 this.track.observe("mousedown", function(e){ Event.stop(e) });
+	 }
+	 else {
     this.track.observe("mousedown", this.eventMouseDown);
+	 }
     document.observe("mouseup", this.eventMouseUp);
     document.observe("mousemove", this.eventMouseMove);
 
